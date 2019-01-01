@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Create ECR
+
+Resources:
+  AWSTrainingRojaceECRExample:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: aws-training-rojace
+Outputs:
+  ECRValue:
+    Value: !GetAtt AWSTrainingRojaceECRExample.Arn
+    Export:
+      Name: AWSTrainingRojaceECRExample
