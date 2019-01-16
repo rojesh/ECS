@@ -9,7 +9,7 @@ Resources:
   LoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      Name: rojace-lb-test
+      Name: sample-loadbalancer
       Subnets:
       - Fn::ImportValue:
           !Join [":", [ !Ref EnvironmentName, "SubnetAZ1Public" ]]
@@ -39,7 +39,7 @@ Resources:
   DefaultTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
-      Name: rojace-default-tg
+      Name: sample-default-tg
       VpcId:
         Fn::ImportValue:
           !Join [ ":", [ !Ref EnvironmentName, "VPC" ]]
@@ -50,4 +50,14 @@ Outputs:
     Description: Domain name for the loadbalancer
     Value: !GetAtt LoadBalancer.DNSName
     Export:
-      Name: !Join [':', [ !Ref EnvironmentName, RojaceDomainPlayground ]]
+      Name: !Join [':', [ !Ref EnvironmentName, SampleLoadBalancerDomain ]]
+  LoadBalancerListener:
+    Description: loadbalancer listener
+    Value: !Ref LoadBalancerListener
+    Export:
+      Name: !Join [':', [ !Ref EnvironmentName, SampleLoadBalancerListener ]]
+  LoadBalancerSecurityGroup:
+    Description: Loadbalancer security group
+    Value: !Ref LoadBalancerSecurityGroup
+    Export:
+      Name: !Join [':', [ !Ref EnvironmentName, SampleLoadBalancerSecurityGroup ]]
